@@ -63,7 +63,7 @@ def generate_certificate(certificate: Certificate):
     draw.text(xy=(1920, 1800), text=g_date_en, font=font, fill='#000000', align='center')
 
     qr = qrcode.QRCode(version=1, error_correction=qrcode.constants.ERROR_CORRECT_L, box_size=10, border=1)
-    qr.add_data(f"http://innovation-academy.uz/certificate/{certificate.certificate_id}.jpg")
+    qr.add_data(f"https://innovation-academy.uz/certificate/{certificate.certificate_id}.jpg")
     img_qr = qr.make_image(image_factory=StyledPilImage, color_mask=RadialGradiantColorMask(),
                            module_drawer=RoundedModuleDrawer())
     img.paste(img_qr, (img.size[0] - img_qr.size[0] - 130, img.size[1] - img_qr.size[1] - 220))
