@@ -28,7 +28,7 @@ class Certificate(models.Model):
         verbose_name_plural = "Sertifikatlar"
 
 
-from utils.certificate_generator import generate_certificate
+from web.utils.certificate_generator import generate_certificate
 
 
 @receiver(models.signals.post_save, sender=Certificate)
