@@ -30,11 +30,11 @@ def generate_certificate(certificate: Certificate):
     ed = certificate.end_date
     gd = certificate.created_at
 
-    locale.setlocale(locale.LC_TIME, 'uz_uz')
+    locale.setlocale(locale.LC_TIME, 'uz_UZ')
     text_uz = f"""{sd.strftime("%Y-yil %d-%Bdan")} {ed.strftime("%d-%Bgacha")} Innovation Academy markazida 32 soatli “Axborot-kommunikatsiya texnologiyalari” kursini muvaffaqiyatli yakunladi. """
     g_date_uz = f"Berilgan sana: {gd.strftime('%d - %B %Y')} y."
 
-    locale.setlocale(locale.LC_TIME, 'en_us')
+    locale.setlocale(locale.LC_TIME, 'en_US')
     text_en = f"""has successfully completed the course of "Information Technologies" conducted by Innovation Academy Center from {ordinal_date(sd.day)} of {sd.strftime('%B')} to {ordinal_date(ed.day)} of {sd.strftime('%B in %Y')}"""
     g_date_en = f"Given date: {gd.strftime('%d - %B %Y')} y."
 
