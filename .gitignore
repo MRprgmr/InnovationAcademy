@@ -130,7 +130,7 @@ dmypy.json
 .pyre/
 .idea/*
 
-db.sqlite
+db.sqlite3
 
 # utils
 logs.log
