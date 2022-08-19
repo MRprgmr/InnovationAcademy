@@ -27,7 +27,7 @@ def draw_underlined_text(draw, pos, text, font, **options):
 
 
 def generate_certificate(certificate: Certificate):
-    img = Image.open('web/utils/certificate_template.jpg')
+    img = Image.open(open('web/utils/certificate_template.jpg'))
     draw = ImageDraw.Draw(im=img)
 
     full_name = certificate.full_name.upper()
