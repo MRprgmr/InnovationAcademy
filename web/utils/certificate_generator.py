@@ -68,7 +68,7 @@ def generate_certificate(certificate: Certificate):
                            module_drawer=RoundedModuleDrawer())
     img.paste(img_qr, (img.size[0] - img_qr.size[0] - 130, img.size[1] - img_qr.size[1] - 220))
 
-    font = ImageFont.truetype(font=os.path.join(STATIC_ROOT, 'fonts/rockb.ttf'), size=55)
+    font = ImageFont.truetype(font=os.path.join(STATIC_ROOT, 'fonts/rockb.ttf'), size=70)
     draw.text(xy=(img.size[0] - 118 - img_qr.size[0], img.size[1] - 230), text=f"ID{certificate.formatted_number}",
               font=font, fill='#0000AA')
 

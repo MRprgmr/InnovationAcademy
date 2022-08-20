@@ -1,3 +1,4 @@
+import os
 from datetime import datetime
 from io import BytesIO
 
@@ -6,6 +7,8 @@ from django.core.files import File
 from django.db import models
 from django.dispatch import receiver
 from django.utils.safestring import mark_safe
+
+from InnovationAcademy.settings import BASE_DIR
 
 
 class Certificate(models.Model):
@@ -29,7 +32,7 @@ class Certificate(models.Model):
     @property
     def formatted_number(self):
         if self.certificate_number:
-            return '0' * (9 - len(str(self.certificate_number))) + str(self.certificate_number)
+            return '0' * (6 - len(str(self.certificate_number))) + str(self.certificate_number)
         else:
             return ""
 
@@ -59,4 +62,4 @@ def create_certificate(sender, instance: Certificate, *args, **kwargs):
             save=True
         )
     else:
-        img.save(fp=f'media/{instance.certificate_id}.jpg')
+        img.save(fp=os.path.join(BASE_DIR, f'media/{instance.certificate_id}.jpg'))
