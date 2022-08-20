@@ -29,7 +29,7 @@ class Certificate(models.Model):
     @property
     def formatted_number(self):
         if self.certificate_number:
-            return '0' * (9 - self.certificate_number) + str(self.certificate_number)
+            return '0' * (9 - len(str(self.certificate_number))) + str(self.certificate_number)
         else:
             return ""
 
