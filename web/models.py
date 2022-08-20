@@ -5,6 +5,7 @@ from PIL.Image import Image
 from django.core.files import File
 from django.db import models
 from django.dispatch import receiver
+from django.utils.safestring import mark_safe
 
 
 class Certificate(models.Model):
@@ -12,6 +13,8 @@ class Certificate(models.Model):
     start_date = models.DateField(verbose_name="Boshlanish sana")
     end_date = models.DateField(verbose_name="Tugash sana")
     created_at = models.DateTimeField(verbose_name="Berilgan sana", auto_now_add=True)
+    certificate_number = models.IntegerField(verbose_name="Sertifikat nomeri", unique=True)
+    given_date = models.DateField(verbose_name="Berilgan sanasi")
     source_image = models.ImageField(verbose_name="Sertifikat nusxasi", upload_to='', null=True, blank=True)
     certificate_id = models.CharField(max_length=25, verbose_name="Certificate ID", blank=True, null=True, unique=True)
 
@@ -22,6 +25,19 @@ class Certificate(models.Model):
         if self.certificate_id is None:
             self.certificate_id = str(int(datetime.now().timestamp()))
         super(Certificate, self).save(*args, **kwargs)
+
+    @property
+    def formatted_number(self):
+        if self.certificate_number:
+            return '0' * (9 - self.certificate_number) + str(self.certificate_number)
+        else:
+            return ""
+
+    def certificate_download(self):
+        return mark_safe('<a href="/certificate/{0}.jpg" download>{1}</a>'.format(
+            self.certificate_id, self.formatted_number))
+
+    certificate_download.short_description = 'Download Certificate'
 
     class Meta:
         verbose_name = "Sertifikat"

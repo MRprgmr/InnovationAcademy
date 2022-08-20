@@ -5,5 +5,5 @@ from web.models import Certificate
 
 @admin.register(Certificate)
 class CertificateAdmin(admin.ModelAdmin):
-    list_display = ['full_name', 'certificate_id', 'created_at', 'source_image']
-    readonly_fields = ['created_at', 'certificate_id', 'source_image']
+    list_display = ['full_name', 'certificate_number', 'given_date', 'source_image']
+    readonly_fields = ['certificate_id', 'source_image', 'certificate_download']

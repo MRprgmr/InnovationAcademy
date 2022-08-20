@@ -1,9 +1,9 @@
 import locale
+import os
 import textwrap
 from string import ascii_letters
 
 import qrcode
-import os
 from PIL import Image, ImageDraw, ImageFont
 from qrcode.image.styledpil import StyledPilImage
 from qrcode.image.styles.colormasks import RadialGradiantColorMask
@@ -28,14 +28,14 @@ def generate_certificate(certificate: Certificate):
     full_name = certificate.full_name.upper()
     sd = certificate.start_date
     ed = certificate.end_date
-    gd = certificate.created_at
+    gd = certificate.given_date
 
     locale.setlocale(locale.LC_TIME, 'uz_UZ')
     text_uz = f"""{sd.strftime("%Y-yil %d-%Bdan")} {ed.strftime("%d-%Bgacha")} Innovation Academy markazida 32 soatli “Axborot-kommunikatsiya texnologiyalari” kursini muvaffaqiyatli yakunladi. """
     g_date_uz = f"Berilgan sana: {gd.strftime('%d - %B %Y')} y."
 
     locale.setlocale(locale.LC_TIME, 'en_US')
-    text_en = f"""has successfully completed the course of "Information Technologies" conducted by Innovation Academy Center from {ordinal_date(sd.day)} of {sd.strftime('%B')} to {ordinal_date(ed.day)} of {sd.strftime('%B in %Y')}"""
+    text_en = f"""has successfully completed the course of "Information Technologies" conducted by Innovation Academy Center from {ordinal_date(sd.day)} of {sd.strftime('%B')} to {ordinal_date(ed.day)} of {ed.strftime('%B in %Y')}"""
     g_date_en = f"Given date: {gd.strftime('%d - %B %Y')} y."
 
     font = ImageFont.truetype(font=os.path.join(STATIC_ROOT, 'fonts/rockb.ttf'), size=100)
@@ -68,8 +68,8 @@ def generate_certificate(certificate: Certificate):
                            module_drawer=RoundedModuleDrawer())
     img.paste(img_qr, (img.size[0] - img_qr.size[0] - 130, img.size[1] - img_qr.size[1] - 220))
 
-    font = ImageFont.truetype(font=os.path.join(STATIC_ROOT, 'fonts/rockb.ttf'), size=45)
-    draw.text(xy=(img.size[0] - 118 - img_qr.size[0], img.size[1] - 230), text=f"ID{certificate.certificate_id}",
+    font = ImageFont.truetype(font=os.path.join(STATIC_ROOT, 'fonts/rockb.ttf'), size=55)
+    draw.text(xy=(img.size[0] - 118 - img_qr.size[0], img.size[1] - 230), text=f"ID{certificate.formatted_number}",
               font=font, fill='#0000AA')
 
     return img
