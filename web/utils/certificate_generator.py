@@ -38,7 +38,7 @@ def generate_certificate(certificate: Certificate):
     text_en = f"""has successfully completed the course of "Information Technologies" conducted by Innovation Academy Center from {ordinal_date(sd.day)} of {sd.strftime('%B')} to {ordinal_date(ed.day)} of {ed.strftime('%B in %Y')}"""
     g_date_en = f"Given date: {gd.strftime('%d - %B %Y')} y."
 
-    font = ImageFont.truetype(font=os.path.join(STATIC_ROOT, 'fonts/rockb.ttf'), size=100)
+    font = ImageFont.truetype(font=os.path.join(STATIC_ROOT, 'fonts/rockb.ttf'), size=80)
 
     tw, th = draw.textsize(text=full_name, font=font)
     draw.text(xy=(880, 920), text=full_name, font=font, fill='#000000', anchor='mm', align='center')
