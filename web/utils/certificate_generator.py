@@ -46,10 +46,10 @@ def generate_certificate(certificate: Certificate):
     draw.text(xy=(2600, 920), text=full_name, font=font, fill='#000000', anchor='mm', align='center')
     draw.line((2600 - tw // 2, 920 + th // 2, 2600 + tw // 2, 920 + th // 2), fill='#000000', width=6)
 
-    avg_char_width = sum(font.getlength(char) for char in ascii_letters) / len(ascii_letters)
-    max_char_count = int(2600 / avg_char_width)
-
     font = ImageFont.truetype(font=os.path.join(STATIC_ROOT, 'fonts/rock.ttf'), size=70)
+    avg_char_width = sum(font.getlength(char) for char in ascii_letters) / len(ascii_letters)
+    max_char_count = int(1800 / avg_char_width)
+
 
     text = textwrap.fill(text=text_uz, width=max_char_count)
     draw.text(xy=(880, 1200), text=text, font=font, fill='#000000', anchor='mm', spacing=25, align='center')
